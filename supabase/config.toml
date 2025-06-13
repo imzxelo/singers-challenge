@@ -1,5 +1,2 @@
 [functions.summarize]
 verify_jwt = false
-enabled = true
-import_map = "./functions/summarize/deno.json"
-entrypoint = "./functions/summarize/index.ts"
