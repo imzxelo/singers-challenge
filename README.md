@@ -1,4 +1,14 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# singers-challenge
+
+Next.js + Tailwind CSS + Supabase Edge Functions を使用したプロジェクト
+
+## 機能
+
+- Next.js 15.3.3
+- Tailwind CSS 4.1.10
+- TypeScript
+- ESLint
+- Supabase Edge Functions (JWT認証無効化)
 
 ## Getting Started
 
