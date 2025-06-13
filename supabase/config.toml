@@ -1,9 +1,9 @@
 [functions]
-verify_jwt = false
+  [functions.verify_jwt]
+    summarize = false
 
 [functions.summarize]
 enabled = true
-verify_jwt = true
 import_map = "./functions/summarize/deno.json"
 # Uncomment to specify a custom file path to the entrypoint.
 # Supported file extensions are: .ts, .js, .mjs, .jsx, .tsx
