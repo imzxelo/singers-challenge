@@ -1,6 +1,5 @@
 [functions]
-[functions.verify_jwt]
-summarize = false
+verify_jwt = false
 
 [functions.summarize]
 enabled = true
