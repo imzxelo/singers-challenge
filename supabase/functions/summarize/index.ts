@@ -5,18 +5,32 @@
 // Setup type definitions for built-in Supabase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts"
 
+import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
+
 console.log("Hello from Functions!")
 
-Deno.serve(async (req) => {
-  const { name } = await req.json()
-  const data = {
-    message: `Hello ${name}!`,
-  }
+serve(async (req) => {
+  const { data } = await req.json();
+  
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Deno.env.get("OPENAI_API_KEY")}`,
+    },
+    body: JSON.stringify({
+      model: "gpt-4o",
+      temperature: 0.3,
+      messages: [
+        { role: "system", content: "あなたはコメントを要約するAIです。" },
+        { role: "user", content: JSON.stringify(data) },
+      ],
+    }),
+  }).then((r) => r.json());
 
-  return new Response(
-    JSON.stringify(data),
-    { headers: { "Content-Type": "application/json" } },
-  )
+  return new Response(JSON.stringify(res), {
+    headers: { "Content-Type": "application/json" },
+  });
 })
 
 /* To invoke locally:
